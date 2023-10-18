@@ -1,8 +1,8 @@
 package com.holovko.expertsystem.mapper;
 
-import com.holovko.expertsystem.model.dto.*;
 import com.holovko.expertsystem.model.document.RuleDocument;
 import com.holovko.expertsystem.model.document.RuleGroupDocument;
+import com.holovko.expertsystem.model.dto.rule.*;
 import com.holovko.expertsystem.model.entity.RuleEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

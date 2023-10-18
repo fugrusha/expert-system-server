@@ -1,8 +1,8 @@
 package com.holovko.expertsystem.resolver;
 
 import com.holovko.expertsystem.model.dto.AnswerFormDTO;
-import com.holovko.expertsystem.model.dto.RuleGroupReadDTO;
-import com.holovko.expertsystem.model.dto.RuleReadDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleGroupReadDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleReadDTO;
 import com.holovko.expertsystem.model.document.RuleGroupType;
 import com.holovko.expertsystem.service.nosql.RuleGroupNoSqlService;
 import com.holovko.expertsystem.service.nosql.RuleNoSqlService;

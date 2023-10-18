@@ -1,10 +1,9 @@
 package com.holovko.expertsystem.controller;
 
-import com.holovko.expertsystem.model.dto.RuleCreateDTO;
-import com.holovko.expertsystem.model.dto.RuleReadDTO;
-import com.holovko.expertsystem.model.dto.RuleUpdateDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleCreateDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleReadDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleUpdateDTO;
 import com.holovko.expertsystem.service.RuleService;
-import com.holovko.expertsystem.service.nosql.RuleNoSqlService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

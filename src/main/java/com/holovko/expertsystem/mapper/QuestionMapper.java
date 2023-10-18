@@ -1,8 +1,8 @@
 package com.holovko.expertsystem.mapper;
 
-import com.holovko.expertsystem.model.dto.QuestionCreateDTO;
-import com.holovko.expertsystem.model.dto.QuestionReadDTO;
-import com.holovko.expertsystem.model.dto.QuestionUpdateDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionCreateDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionReadDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionUpdateDTO;
 import com.holovko.expertsystem.model.document.QuestionDocument;
 import com.holovko.expertsystem.model.entity.QuestionEntity;
 import org.mapstruct.Mapper;

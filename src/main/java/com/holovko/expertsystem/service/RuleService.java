@@ -1,8 +1,8 @@
 package com.holovko.expertsystem.service;
 
-import com.holovko.expertsystem.model.dto.RuleCreateDTO;
-import com.holovko.expertsystem.model.dto.RuleReadDTO;
-import com.holovko.expertsystem.model.dto.RuleUpdateDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleCreateDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleReadDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleUpdateDTO;
 
 import java.util.List;
 

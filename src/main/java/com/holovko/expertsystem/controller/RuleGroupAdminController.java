@@ -1,8 +1,8 @@
 package com.holovko.expertsystem.controller;
 
-import com.holovko.expertsystem.model.dto.RuleGroupCreateDTO;
-import com.holovko.expertsystem.model.dto.RuleGroupReadDTO;
-import com.holovko.expertsystem.model.dto.RuleGroupUpdateDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleGroupCreateDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleGroupReadDTO;
+import com.holovko.expertsystem.model.dto.rule.RuleGroupUpdateDTO;
 import com.holovko.expertsystem.service.nosql.RuleGroupNoSqlService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

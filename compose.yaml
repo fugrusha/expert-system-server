@@ -1,26 +1,39 @@
 version: '3.8'
 
 services:
-  mongodb:
-    image: 'mongo:latest'
-    environment:
-      - 'MONGO_INITDB_DATABASE=expertsystemdatabase'
-      - 'MONGO_INITDB_ROOT_PASSWORD=secret'
-      - 'MONGO_INITDB_ROOT_USERNAME=root'
-    ports:
-      - '27017:27017'
+#  mongodb:
+#    image: 'mongo:latest'
+#    environment:
+#      - 'MONGO_INITDB_DATABASE=expertsystemdatabase'
+#      - 'MONGO_INITDB_ROOT_PASSWORD=secret'
+#      - 'MONGO_INITDB_ROOT_USERNAME=root'
+#    ports:
+#      - '27017:27017'
 
-  postgres-db:
-    image: postgres:14.1-alpine
-    restart: always
+  backend:
+#    image: expertsystem-0.0.1
+    image: fugrusha/expert-system-server:1.0
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - 'spring.data.mongodb.uri=mongodb+srv://root:n0th1ng@cluster0.maqltwx.mongodb.net/?retryWrites=true&w=majority'
     ports:
-      - '5432:5432'
-    volumes:
-      - db:/var/lib/postgresql/data
+      - '8080:8080'
 
-volumes:
-  db:
-    driver: local
+  ui:
+    image: fugrusha/expert-system-ui:1.0
+    ports:
+      - '80:80'
+
+#  postgres-db:
+#    image: postgres:14.1-alpine
+#    restart: always
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#    ports:
+#      - '5432:5432'
+#    volumes:
+#      - db:/var/lib/postgresql/data
+#
+#volumes:
+#  db:
+#    driver: local

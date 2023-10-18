@@ -1,10 +1,9 @@
 package com.holovko.expertsystem.controller;
 
-import com.holovko.expertsystem.model.dto.QuestionCreateDTO;
-import com.holovko.expertsystem.model.dto.QuestionReadDTO;
-import com.holovko.expertsystem.model.dto.QuestionUpdateDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionCreateDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionReadDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionUpdateDTO;
 import com.holovko.expertsystem.service.QuestionService;
-import com.holovko.expertsystem.service.nosql.QuestionNoSqlService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

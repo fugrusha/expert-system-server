@@ -1,8 +1,8 @@
 package com.holovko.expertsystem.service;
 
-import com.holovko.expertsystem.model.dto.QuestionCreateDTO;
-import com.holovko.expertsystem.model.dto.QuestionReadDTO;
-import com.holovko.expertsystem.model.dto.QuestionUpdateDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionCreateDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionReadDTO;
+import com.holovko.expertsystem.model.dto.question.QuestionUpdateDTO;
 
 import java.util.List;
 

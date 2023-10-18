@@ -30,5 +30,6 @@ public class QuestionEntity {
 
     private String comment;
 
+    @Column(name = "question_order")
     private Integer order;
 }
