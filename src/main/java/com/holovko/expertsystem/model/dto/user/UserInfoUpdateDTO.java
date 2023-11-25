@@ -1,13 +1,9 @@
-package com.holovko.expertsystem.model.dto.seller;
+package com.holovko.expertsystem.model.dto.user;
 
 import lombok.Data;
 
 @Data
-public class SellerCreateDTO {
-
-    private String username;
-
-    private String password;
+public class UserInfoUpdateDTO {
 
     private String profilePictureURL;
 

@@ -1,9 +1,12 @@
 package com.holovko.expertsystem.mapper;
 
-import com.holovko.expertsystem.model.dto.seller.SellerCreateDTO;
-import com.holovko.expertsystem.model.dto.seller.SellerReadDTO;
+import com.holovko.expertsystem.model.dto.seller.UserInfoCreateDTO;
+import com.holovko.expertsystem.model.dto.user.UserInfoInternalDTO;
+import com.holovko.expertsystem.model.dto.user.UserInfoReadDTO;
+import com.holovko.expertsystem.model.dto.user.UserRegisterDTO;
 import com.holovko.expertsystem.model.entity.UserInfoEntity;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
@@ -12,7 +15,11 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface UserInfoMapper {
 
-    UserInfoEntity toEntity(SellerCreateDTO createDTO);
+    UserInfoEntity toEntity(UserInfoCreateDTO createDTO);
 
-    SellerReadDTO toReadDto(UserInfoEntity userInfoEntity);
+    UserInfoReadDTO toReadDto(UserInfoEntity userInfoEntity);
+    UserInfoInternalDTO toInternalDto(UserInfoEntity userInfoEntity);
+
+    @Mapping(target = "password", source = "encodedPassword")
+    UserInfoCreateDTO toCreateDto(UserRegisterDTO registerDTO, String encodedPassword);
 }

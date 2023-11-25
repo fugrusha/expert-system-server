@@ -2,16 +2,13 @@ package com.holovko.expertsystem.dao.sql;
 
 import com.holovko.expertsystem.dao.PropertyDao;
 import com.holovko.expertsystem.exception.EntityNotFoundException;
+import com.holovko.expertsystem.mapper.ImageMapper;
 import com.holovko.expertsystem.mapper.PropertyMapper;
 import com.holovko.expertsystem.model.dto.property.PropertyCreateDTO;
 import com.holovko.expertsystem.model.dto.property.PropertyReadDTO;
 import com.holovko.expertsystem.model.dto.property.PropertyUpdateDTO;
-import com.holovko.expertsystem.model.entity.CityEntity;
-import com.holovko.expertsystem.model.entity.PropertyEntity;
-import com.holovko.expertsystem.model.entity.UserInfoEntity;
-import com.holovko.expertsystem.repository.jpa.CityJpaRepository;
-import com.holovko.expertsystem.repository.jpa.PropertyJpaRepository;
-import com.holovko.expertsystem.repository.jpa.UserInfoJpaRepository;
+import com.holovko.expertsystem.model.entity.*;
+import com.holovko.expertsystem.repository.jpa.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,18 +24,27 @@ public class PropertySqlDao implements PropertyDao {
     private final PropertyJpaRepository propertyRepository;
     private final UserInfoJpaRepository userInfoRepository;
     private final CityJpaRepository cityRepository;
+    private final ImageJpaRepository imageRepository;
+    private final PropertyFeatureJpaRepository propertyFeatureRepository;
     private final PropertyMapper propertyMapper;
+    private final ImageMapper imageMapper;
 
     @Override
     public Optional<PropertyReadDTO> findById(String id) {
+        List<PropertyFeatureEntity> propertyFeatures = propertyFeatureRepository.findAllByPropertyId(id);
+        List<ImageEntity> images = imageRepository.findByPropertyId(id);
         return propertyRepository.findById(id)
-                .map(propertyMapper::toReadDTO);
+                .map(property -> propertyMapper.toReadDTO(property, propertyFeatures, images));
     }
 
     @Override
     public List<PropertyReadDTO> findAll() {
         return propertyRepository.findAll().stream()
-                .map(propertyMapper::toReadDTO)
+                .map(propertyEntity -> {
+                    List<ImageEntity> images = imageRepository.findByPropertyId(propertyEntity.getId());
+                    List<PropertyFeatureEntity> propertyFeatures = propertyFeatureRepository.findAllByPropertyId(propertyEntity.getId());
+                    return propertyMapper.toReadDTO(propertyEntity, propertyFeatures, images);
+                })
                 .toList();
     }
 
@@ -46,7 +52,7 @@ public class PropertySqlDao implements PropertyDao {
     public PropertyReadDTO create(String sellerId, PropertyCreateDTO createDTO) {
         UserInfoEntity seller = userInfoRepository.findById(sellerId)
                 .orElseThrow(EntityNotFoundException::new);
-        CityEntity cityEntity = cityRepository.findById(createDTO.getCityId())
+        CityEntity cityEntity = cityRepository.findByName(createDTO.getCity())
                 .orElseThrow(EntityNotFoundException::new);
 
         PropertyEntity propertyEntity = propertyMapper.toEntity(createDTO);
@@ -63,10 +69,17 @@ public class PropertySqlDao implements PropertyDao {
                 .map(entity -> {
                     propertyMapper.updateEntity(entity, updateDTO);
 
-                    if (updateDTO.getCityId() != null) {
-                        CityEntity cityEntity = cityRepository.findById(updateDTO.getCityId())
+                    if (updateDTO.getCity() != null) {
+                        CityEntity cityEntity = cityRepository.findByName(updateDTO.getCity())
                                 .orElseThrow(EntityNotFoundException::new);
                         entity.setCity(cityEntity);
+                    }
+
+                    if (!updateDTO.getImages().isEmpty()) {
+                        List<ImageEntity> imageEntities = updateDTO.getImages().stream()
+                                .map(imageUrl -> imageMapper.toEntity(imageUrl, entity))
+                                .toList();
+                        imageRepository.saveAll(imageEntities);
                     }
                     return entity;
                 })

@@ -17,7 +17,10 @@ public class WebConfig implements WebMvcConfigurer {
                         HttpMethod.GET.name(),
                         HttpMethod.DELETE.name(),
                         HttpMethod.PATCH.name(),
-                        HttpMethod.POST.name()
-                );
+                        HttpMethod.POST.name(),
+                        HttpMethod.OPTIONS.name()
+                )
+                .allowedOrigins("http://localhost:4200")
+                .allowCredentials(true);
     }
 }

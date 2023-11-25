@@ -2,10 +2,10 @@ package com.holovko.expertsystem.dao.sql;
 
 import com.holovko.expertsystem.dao.UserInfoDao;
 import com.holovko.expertsystem.exception.EntityAlreadyExistsException;
-import com.holovko.expertsystem.exception.EntityNotFoundException;
 import com.holovko.expertsystem.mapper.UserInfoMapper;
-import com.holovko.expertsystem.model.dto.seller.SellerCreateDTO;
-import com.holovko.expertsystem.model.dto.seller.SellerReadDTO;
+import com.holovko.expertsystem.model.dto.seller.UserInfoCreateDTO;
+import com.holovko.expertsystem.model.dto.user.UserInfoInternalDTO;
+import com.holovko.expertsystem.model.dto.user.UserInfoReadDTO;
 import com.holovko.expertsystem.model.entity.UserInfoEntity;
 import com.holovko.expertsystem.model.entity.UserType;
 import com.holovko.expertsystem.repository.jpa.UserInfoJpaRepository;
@@ -24,7 +24,13 @@ public class UserInfoSqlDao implements UserInfoDao {
     private final UserInfoMapper userInfoMapper;
 
     @Override
-    public SellerReadDTO createSeller(SellerCreateDTO createDTO) {
+    public Optional<UserInfoInternalDTO> findByUsername(String username) {
+        return userInfoRepository.findByUsername(username)
+                .map(userInfoMapper::toInternalDto);
+    }
+
+    @Override
+    public UserInfoReadDTO createSeller(UserInfoCreateDTO createDTO) {
         userInfoRepository.findByUsername(createDTO.getUsername())
                 .ifPresent(entity -> {
                     throw new EntityAlreadyExistsException(
@@ -38,8 +44,15 @@ public class UserInfoSqlDao implements UserInfoDao {
     }
 
     @Override
-    public Optional<SellerReadDTO> getSellerById(String sellerId) {
-        return userInfoRepository.findById(sellerId)
+    public Optional<UserInfoReadDTO> findById(String userId) {
+        return userInfoRepository.findById(userId)
                 .map(userInfoMapper::toReadDto);
+    }
+
+    @Override
+    public UserInfoReadDTO createUser(UserInfoCreateDTO createDTO) {
+        UserInfoEntity userInfoEntity = userInfoMapper.toEntity(createDTO);
+        userInfoEntity = userInfoRepository.save(userInfoEntity);
+        return userInfoMapper.toReadDto(userInfoEntity);
     }
 }

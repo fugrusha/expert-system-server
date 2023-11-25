@@ -33,4 +33,8 @@ public class PropertyFeatureService {
         }
         propertyFeatureDao.deletePropertyFeature(propertyId, featureId);
     }
+
+    public void deleteAll(String propertyId) {
+        propertyFeatureDao.deleteAllByPropertyId(propertyId);
+    }
 }

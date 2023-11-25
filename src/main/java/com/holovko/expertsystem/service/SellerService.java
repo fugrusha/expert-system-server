@@ -76,15 +76,19 @@ public class SellerService {
         }
     }
 
-    public List<PropertyFeatureReadDTO> getAllPropertyFeatures(String sellerId, String propertyId) {
+    public List<PropertyFeatureReadDTO> getAllPropertyFeatures(String propertyId) {
         return propertyFeatureService.getAllPropertyFeatures(propertyId);
     }
 
-    public PropertyFeatureReadDTO createPropertyFeature(String sellerId, String propertyId, PropertyFeatureCreateDTO createDTO) {
+    public PropertyFeatureReadDTO createPropertyFeature(String propertyId, PropertyFeatureCreateDTO createDTO) {
         return propertyFeatureService.addPropertyFeature(propertyId, createDTO);
     }
 
-    public void deletePropertyFeature(String sellerId, String propertyId, String featureId) {
+    public void deletePropertyFeature(String propertyId, String featureId) {
         propertyFeatureService.deletePropertyFeature(propertyId, featureId);
+    }
+
+    public void deleteAllPropertyFeatures(String propertyId) {
+        propertyFeatureService.deleteAll(propertyId);
     }
 }

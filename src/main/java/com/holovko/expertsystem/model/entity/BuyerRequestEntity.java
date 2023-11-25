@@ -3,6 +3,7 @@ package com.holovko.expertsystem.model.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.Instant;
 
@@ -13,8 +14,9 @@ import java.time.Instant;
 public class BuyerRequestEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long requestId;
+    @GeneratedValue(generator = "custom-generator")
+    @GenericGenerator(name = "custom-generator", strategy = "com.holovko.expertsystem.model.entity.generator.CustomStringIdGenerator")
+    private String requestId;
 
     @ManyToOne
     @JoinColumn(name = "property_id")

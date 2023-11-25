@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PropertyFeatureJpaRepository extends JpaRepository<PropertyFeatureEntity, String> {
     List<PropertyFeatureEntity> findAllByPropertyId(String propertyId);
+
+    void deleteAllByPropertyId(String propertyId);
 }

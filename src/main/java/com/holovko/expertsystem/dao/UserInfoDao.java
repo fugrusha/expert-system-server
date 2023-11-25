@@ -1,12 +1,18 @@
 package com.holovko.expertsystem.dao;
 
-import com.holovko.expertsystem.model.dto.seller.SellerCreateDTO;
-import com.holovko.expertsystem.model.dto.seller.SellerReadDTO;
+import com.holovko.expertsystem.model.dto.seller.UserInfoCreateDTO;
+import com.holovko.expertsystem.model.dto.user.UserInfoInternalDTO;
+import com.holovko.expertsystem.model.dto.user.UserInfoReadDTO;
 
 import java.util.Optional;
 
 public interface UserInfoDao {
-    SellerReadDTO createSeller(SellerCreateDTO createDTO);
 
-    Optional<SellerReadDTO> getSellerById(String sellerId);
+    Optional<UserInfoInternalDTO> findByUsername(String username);
+
+    UserInfoReadDTO createSeller(UserInfoCreateDTO createDTO);
+
+    Optional<UserInfoReadDTO> findById(String userId);
+
+    UserInfoReadDTO createUser(UserInfoCreateDTO createDTO);
 }

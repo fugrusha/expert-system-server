@@ -1,13 +1,11 @@
-package com.holovko.expertsystem.model.dto;
+package com.holovko.expertsystem.model.dto.image;
 
 import lombok.Data;
 
 @Data
-public class ImageDTO {
+public class ImageReadDTO {
 
     private String id;
-
-    private String propertyId;
 
     private String imageURL;
 

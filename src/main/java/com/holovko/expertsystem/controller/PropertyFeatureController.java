@@ -11,29 +11,27 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/sellers/{sellerId}/properties/{propertyId}/features")
+@RequestMapping("/api/v1/properties/{propertyId}/features")
 @RequiredArgsConstructor
-public class SellerPropertyFeatureController {
+public class PropertyFeatureController {
 
     private final SellerService sellerService;
 
     @GetMapping
     public List<PropertyFeatureReadDTO> getAllPropertyFeatures(
-            @PathVariable String sellerId,
             @PathVariable String propertyId
     ) {
-        log.info("getAllPropertyFeatures: seller={}, propertyId={}", sellerId, propertyId);
-        return sellerService.getAllPropertyFeatures(sellerId, propertyId);
+        log.info("getAllPropertyFeatures: propertyId={}", propertyId);
+        return sellerService.getAllPropertyFeatures(propertyId);
     }
 
     @PostMapping
     public PropertyFeatureReadDTO createPropertyFeature(
-            @PathVariable String sellerId,
             @PathVariable String propertyId,
             @RequestBody PropertyFeatureCreateDTO createDTO
     ) {
-        log.info("createPropertyFeature: seller={}, propertyId={}, createDTO={}", sellerId, propertyId, createDTO);
-        return sellerService.createPropertyFeature(sellerId, propertyId, createDTO);
+        log.info("createPropertyFeature: propertyId={}, createDTO={}", propertyId, createDTO);
+        return sellerService.createPropertyFeature(propertyId, createDTO);
     }
 
 //    @PatchMapping("/{propertyId}")
@@ -48,11 +46,18 @@ public class SellerPropertyFeatureController {
 
     @DeleteMapping("/{featureId}")
     public void deletePropertyFeature(
-            @PathVariable String sellerId,
             @PathVariable String propertyId,
             @PathVariable String featureId
     ) {
-        log.info("deletePropertyFeature: seller={}, propertyId={}, featureId={}", sellerId, propertyId, featureId);
-        sellerService.deletePropertyFeature(sellerId, propertyId, featureId);
+        log.info("deletePropertyFeature: propertyId={}, featureId={}", propertyId, featureId);
+        sellerService.deletePropertyFeature(propertyId, featureId);
+    }
+
+    @DeleteMapping
+    public void deleteAllFeatures(
+            @PathVariable String propertyId
+    ) {
+        log.info("deleteAllFeatures: propertyId={}", propertyId);
+        sellerService.deleteAllPropertyFeatures(propertyId);
     }
 }

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Data
 public class PropertyCreateDTO {
 
-    private String cityId;
+    private String city;
 
     private BigDecimal price;
 
@@ -17,6 +17,8 @@ public class PropertyCreateDTO {
     private int bathrooms;
 
     private int squareFootage;
+
+    private String title;
 
     private String description;
 

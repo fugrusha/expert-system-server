@@ -34,6 +34,8 @@ public class PropertyEntity {
 
     private int squareFootage;
 
+    private String title;
+
     private String description;
 
     @Enumerated(EnumType.STRING)

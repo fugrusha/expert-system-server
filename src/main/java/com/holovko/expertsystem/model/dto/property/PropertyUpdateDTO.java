@@ -4,11 +4,12 @@ import com.holovko.expertsystem.model.entity.PropertyStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class PropertyUpdateDTO {
 
-    private String cityId;
+    private String city;
 
     private BigDecimal price;
 
@@ -18,7 +19,11 @@ public class PropertyUpdateDTO {
 
     private int squareFootage;
 
+    private String title;
+
     private String description;
 
     private PropertyStatus status;
+
+    private List<String> images;
 }

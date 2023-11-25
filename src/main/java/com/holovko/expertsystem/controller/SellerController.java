@@ -1,8 +1,8 @@
 package com.holovko.expertsystem.controller;
 
-import com.holovko.expertsystem.model.dto.property.PropertyUpdateDTO;
-import com.holovko.expertsystem.model.dto.seller.SellerCreateDTO;
-import com.holovko.expertsystem.model.dto.seller.SellerReadDTO;
+import com.holovko.expertsystem.model.dto.seller.UserInfoCreateDTO;
+import com.holovko.expertsystem.model.dto.user.UserInfoReadDTO;
+import com.holovko.expertsystem.model.dto.user.UserInfoUpdateDTO;
 import com.holovko.expertsystem.service.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ public class SellerController {
     private final UserInfoService userInfoService;
 
     @GetMapping
-    public Page<SellerReadDTO> getSellers(
+    public Page<UserInfoReadDTO> getSellers(
             Pageable pageable
     ) {
         log.info("getSellers: pageable={}", pageable);
@@ -27,7 +27,7 @@ public class SellerController {
     }
 
     @GetMapping("/{sellerId}")
-    public SellerReadDTO getSeller(
+    public UserInfoReadDTO getSeller(
             @PathVariable String sellerId
     ) {
         log.info("getSeller: seller={}", sellerId);
@@ -35,17 +35,17 @@ public class SellerController {
     }
 
     @PostMapping
-    public SellerReadDTO registerSeller(
-            @RequestBody SellerCreateDTO createDTO
+    public UserInfoReadDTO registerSeller(
+            @RequestBody UserInfoCreateDTO createDTO
     ) {
         log.info("registerSeller: createDTO={}", createDTO);
         return userInfoService.registerSeller(createDTO);
     }
 
     @PatchMapping("/{sellerId}")
-    public SellerReadDTO updateSeller(
+    public UserInfoReadDTO updateSeller(
             @PathVariable String sellerId,
-            @RequestBody PropertyUpdateDTO updateDTO
+            @RequestBody UserInfoUpdateDTO updateDTO
     ) {
         log.info("updateSeller: seller={}, updateDTO={}", sellerId, updateDTO);
         return userInfoService.updateSeller(sellerId, updateDTO);

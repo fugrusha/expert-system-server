@@ -43,4 +43,9 @@ public class PropertyFeatureSqlDao implements PropertyFeatureDao {
         PropertyFeatureEntity saved = propertyFeatureRepository.save(featureEntity);
         return propertyFeatureMapper.toReadDTO(saved);
     }
+
+    @Override
+    public void deleteAllByPropertyId(String propertyId) {
+        propertyFeatureRepository.deleteAllByPropertyId(propertyId);
+    }
 }

@@ -12,4 +12,6 @@ public interface PropertyFeatureDao {
     List<PropertyFeatureReadDTO> getAllPropertyFeatures(String propertyId);
 
     PropertyFeatureReadDTO addPropertyFeature(String propertyId, PropertyFeatureCreateDTO createDTO);
+
+    void deleteAllByPropertyId(String propertyId);
 }
