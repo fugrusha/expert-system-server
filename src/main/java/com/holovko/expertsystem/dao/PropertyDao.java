@@ -11,7 +11,7 @@ public interface PropertyDao {
 
     Optional<PropertyReadDTO> findById(String id);
 
-    List<PropertyReadDTO> findAll();
+    List<PropertyReadDTO> findAll(String search);
 
     PropertyReadDTO create(String sellerId, PropertyCreateDTO createDTO);
 

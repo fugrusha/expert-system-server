@@ -26,4 +26,6 @@ public class PropertyUpdateDTO {
     private PropertyStatus status;
 
     private List<String> images;
+
+    private List<String> features;
 }

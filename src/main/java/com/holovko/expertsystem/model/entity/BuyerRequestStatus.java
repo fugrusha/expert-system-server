@@ -4,5 +4,6 @@ public enum BuyerRequestStatus {
 
     NEW,
     PROCESSING,
-    COMPLETED
+    COMPLETED,
+    CANCELLED
 }

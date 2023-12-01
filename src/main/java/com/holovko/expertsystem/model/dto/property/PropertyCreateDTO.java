@@ -4,6 +4,7 @@ import com.holovko.expertsystem.model.entity.PropertyStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class PropertyCreateDTO {
@@ -23,4 +24,8 @@ public class PropertyCreateDTO {
     private String description;
 
     private PropertyStatus status;
+
+    private List<String> images;
+
+    private List<String> features;
 }

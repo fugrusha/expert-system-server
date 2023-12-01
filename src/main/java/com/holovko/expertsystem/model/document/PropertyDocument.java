@@ -13,33 +13,20 @@ public class PropertyDocument {
 
     @Id
     private String id;
-
-    private String sellerID;
-
+    private String sellerId;
     private double price;
-
-    private String address;
-
+    private String city;
     private int bedrooms;
-
     private int bathrooms;
-
     private int squareFootage;
-
     private String description;
-
     private PropertyStatus status;
-
     private List<String> features;
-
     private List<Image> images;
-
 
     @Data
     public static class Image {
-
         private String imageURL;
-
         private String caption;
     }
 }

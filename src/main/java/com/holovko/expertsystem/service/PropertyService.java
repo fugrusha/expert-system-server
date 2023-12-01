@@ -16,8 +16,8 @@ public class PropertyService {
 
     private final PropertyDao propertyDao;
 
-    public List<PropertyReadDTO> getAllProperties() {
-       return propertyDao.findAll();
+    public List<PropertyReadDTO> getAllProperties(String search) {
+       return propertyDao.findAll(search);
     }
 
     public PropertyReadDTO getPropertyById(String propertyId) {
