@@ -37,10 +37,4 @@ public class UserInfoEntity {
 
     private String address;
 
-//    @OneToOne(mappedBy = "userInfo", cascade = CascadeType.ALL)
-//    private BuyerEntity buyer;
-//
-//    @OneToOne(mappedBy = "userInfo", cascade = CascadeType.ALL)
-//    private SellerEntity seller;
-
 }

@@ -10,11 +10,13 @@ import com.holovko.expertsystem.model.entity.UserInfoEntity;
 import com.holovko.expertsystem.model.entity.UserType;
 import com.holovko.expertsystem.repository.jpa.UserInfoJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+@Profile("postgre")
 @Transactional
 @Component
 @RequiredArgsConstructor

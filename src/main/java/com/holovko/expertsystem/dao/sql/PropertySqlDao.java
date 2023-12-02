@@ -11,12 +11,14 @@ import com.holovko.expertsystem.model.dto.property.PropertyUpdateDTO;
 import com.holovko.expertsystem.model.entity.*;
 import com.holovko.expertsystem.repository.jpa.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Profile("postgre")
 @Transactional
 @Component
 @RequiredArgsConstructor

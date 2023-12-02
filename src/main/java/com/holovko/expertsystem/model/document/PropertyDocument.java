@@ -16,6 +16,7 @@ public class PropertyDocument {
     private String sellerId;
     private double price;
     private String city;
+    private String title;
     private int bedrooms;
     private int bathrooms;
     private int squareFootage;

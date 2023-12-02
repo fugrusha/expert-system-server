@@ -1,5 +1,6 @@
 package com.holovko.expertsystem.mapper;
 
+import com.holovko.expertsystem.model.document.UserInfoDocument;
 import com.holovko.expertsystem.model.dto.seller.UserInfoCreateDTO;
 import com.holovko.expertsystem.model.dto.user.UserInfoInternalDTO;
 import com.holovko.expertsystem.model.dto.user.UserInfoReadDTO;
@@ -17,8 +18,13 @@ public interface UserInfoMapper {
 
     UserInfoEntity toEntity(UserInfoCreateDTO createDTO);
 
+    UserInfoDocument toDocument(UserInfoCreateDTO createDTO);
+
     UserInfoReadDTO toReadDto(UserInfoEntity userInfoEntity);
+    UserInfoReadDTO toReadDto(UserInfoDocument userInfoDocument);
+
     UserInfoInternalDTO toInternalDto(UserInfoEntity userInfoEntity);
+    UserInfoInternalDTO toInternalDto(UserInfoDocument userInfoDocument);
 
     @Mapping(target = "password", source = "encodedPassword")
     UserInfoCreateDTO toCreateDto(UserRegisterDTO registerDTO, String encodedPassword);

@@ -5,10 +5,12 @@ import com.holovko.expertsystem.mapper.CityMapper;
 import com.holovko.expertsystem.model.dto.CityReadDTO;
 import com.holovko.expertsystem.repository.jpa.CityJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Profile("postgre")
 @Component
 @RequiredArgsConstructor
 public class CitySqlDao implements CityDao {

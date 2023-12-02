@@ -7,8 +7,6 @@ import com.holovko.expertsystem.mapper.UserInfoMapper;
 import com.holovko.expertsystem.model.dto.seller.UserInfoCreateDTO;
 import com.holovko.expertsystem.model.dto.user.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,27 +36,13 @@ public class UserInfoService {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-    public Page<UserInfoReadDTO> getSellers(Pageable pageable) {
-        return null;
-    }
-
-
-    public UserInfoReadDTO getSeller(String sellerId) {
+    public UserInfoReadDTO getUser(String sellerId) {
         return userInfoDao.findById(sellerId)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-    public UserInfoReadDTO registerSeller(UserInfoCreateDTO createDTO) {
-        return userInfoDao.createSeller(createDTO);
-    }
-
-    public UserInfoReadDTO updateSeller(String sellerId, UserInfoUpdateDTO updateDTO) {
+    public UserInfoReadDTO updateUser(String userId, UserInfoUpdateDTO updateDTO) {
         return null;
-    }
-
-
-    public void deleteSeller(String sellerId) {
-
     }
 
     public UserInfoReadDTO register(UserRegisterDTO registerDTO) {

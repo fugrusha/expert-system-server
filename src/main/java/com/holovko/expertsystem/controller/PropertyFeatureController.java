@@ -34,16 +34,6 @@ public class PropertyFeatureController {
         return sellerService.createPropertyFeature(propertyId, createDTO);
     }
 
-//    @PatchMapping("/{propertyId}")
-//    public PropertyReadDTO updateProperty(
-//            @PathVariable String sellerId,
-//            @PathVariable String propertyId,
-//            @RequestBody PropertyUpdateDTO updateDTO
-//    ) {
-//        log.info("updateSellerProperty: seller={}, propertyId={}, updateDTO={}", sellerId, propertyId, updateDTO);
-//        return sellerService.updateProperty(sellerId, propertyId, updateDTO);
-//    }
-
     @DeleteMapping("/{featureId}")
     public void deletePropertyFeature(
             @PathVariable String propertyId,

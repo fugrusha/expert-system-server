@@ -10,10 +10,12 @@ import com.holovko.expertsystem.model.entity.PropertyFeatureEntity;
 import com.holovko.expertsystem.repository.jpa.PropertyFeatureJpaRepository;
 import com.holovko.expertsystem.repository.jpa.PropertyJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Profile("postgre")
 @Component
 @RequiredArgsConstructor
 public class PropertyFeatureSqlDao implements PropertyFeatureDao {

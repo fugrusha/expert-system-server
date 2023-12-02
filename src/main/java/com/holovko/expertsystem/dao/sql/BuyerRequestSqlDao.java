@@ -14,12 +14,14 @@ import com.holovko.expertsystem.repository.jpa.BuyerRequestJpaRepository;
 import com.holovko.expertsystem.repository.jpa.PropertyJpaRepository;
 import com.holovko.expertsystem.repository.jpa.UserInfoJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
 
+@Profile("postgre")
 @Transactional
 @Component
 @RequiredArgsConstructor
@@ -55,22 +57,14 @@ public class BuyerRequestSqlDao implements BuyerRequestDao {
         List<BuyerRequestEntity> requests = buyerRequestRepository.findByBuyerId(buyerId);
 
         return requests.stream()
-                .map(request -> {
-                    UserInfoEntity buyer = request.getBuyer();
-                    PropertyEntity propertyEntity = request.getProperty();
-                    return buyerRequestMapper.toReadDto(request, propertyEntity, buyer, propertyEntity.getSeller());
-                })
+                .map(this::mapToReadDto)
                 .toList();
     }
 
     @Override
     public BuyerRequestReadDTO getRequest(String requestId) {
         return buyerRequestRepository.findById(requestId)
-                .map(request -> {
-                    UserInfoEntity buyer = request.getBuyer();
-                    PropertyEntity propertyEntity = request.getProperty();
-                    return buyerRequestMapper.toReadDto(request, propertyEntity, buyer, propertyEntity.getSeller());
-                })
+                .map(this::mapToReadDto)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
@@ -79,11 +73,7 @@ public class BuyerRequestSqlDao implements BuyerRequestDao {
         List<BuyerRequestEntity> requests = buyerRequestRepository.findByPropertySellerId(sellerId);
 
         return requests.stream()
-                .map(request -> {
-                    UserInfoEntity buyer = request.getBuyer();
-                    PropertyEntity propertyEntity = request.getProperty();
-                    return buyerRequestMapper.toReadDto(request, propertyEntity, buyer, propertyEntity.getSeller());
-                })
+                .map(this::mapToReadDto)
                 .toList();
     }
 
@@ -95,11 +85,13 @@ public class BuyerRequestSqlDao implements BuyerRequestDao {
                     return request;
                 })
                 .map(buyerRequestRepository::save)
-                .map(request -> {
-                    UserInfoEntity buyer = request.getBuyer();
-                    PropertyEntity propertyEntity = request.getProperty();
-                    return buyerRequestMapper.toReadDto(request, propertyEntity, buyer, propertyEntity.getSeller());
-                })
+                .map(this::mapToReadDto)
                 .orElseThrow(EntityNotFoundException::new);
+    }
+
+    private BuyerRequestReadDTO mapToReadDto(BuyerRequestEntity request) {
+        UserInfoEntity buyer = request.getBuyer();
+        PropertyEntity propertyEntity = request.getProperty();
+        return buyerRequestMapper.toReadDto(request, propertyEntity, buyer, propertyEntity.getSeller());
     }
 }

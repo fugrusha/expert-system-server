@@ -12,12 +12,14 @@ import com.holovko.expertsystem.repository.jpa.PropertyFavoriteJpaRepository;
 import com.holovko.expertsystem.repository.jpa.PropertyJpaRepository;
 import com.holovko.expertsystem.repository.jpa.UserInfoJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Profile("postgre")
 @Component
 @RequiredArgsConstructor
 public class FavoritePropertySqlDao implements FavoritePropertyDao {

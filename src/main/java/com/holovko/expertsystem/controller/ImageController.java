@@ -20,7 +20,6 @@ import java.util.UUID;
 @RequestMapping("/api/v1/images")
 public class ImageController {
 
-//    private static final String UPLOAD_FOLDER_NAME = "uploads";
     private static final String UPLOAD_FOLDER_NAME = "/Users/aholovko/Documents/University/Магістратура 122 Комп науки/Экспертные системы/курсовая/source-code/expertsystem-ui/expert-system-frontend/src/assets";
 
     @PostMapping("/upload")

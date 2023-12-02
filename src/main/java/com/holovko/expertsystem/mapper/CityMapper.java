@@ -1,5 +1,6 @@
 package com.holovko.expertsystem.mapper;
 
+import com.holovko.expertsystem.model.document.CityDocument;
 import com.holovko.expertsystem.model.dto.CityReadDTO;
 import com.holovko.expertsystem.model.entity.CityEntity;
 import org.mapstruct.Mapper;
@@ -12,4 +13,6 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 public interface CityMapper {
 
     CityReadDTO toReadDto(CityEntity cityEntity);
+
+    CityReadDTO toReadDto(CityDocument cityDocument);
 }

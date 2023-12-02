@@ -14,9 +14,11 @@ public class BuyerRequestDocument {
     @Id
     private String id;
 
-    private String propertyID;
+    private String propertyId;
 
-    private String buyerID;
+    private String buyerId;
+
+    private String sellerId;
 
     private Instant timestamp;
 
