@@ -37,7 +37,7 @@ public class PropertyNoSqlDao implements PropertyDao {
     public List<PropertyReadDTO> findAll(String search) {
         List<PropertyDocument> propertyDocuments = search == null || search.trim().isEmpty()
                 ? propertyRepository.findAllByStatus(PropertyStatus.FOR_SALE)
-                : propertyRepository.findByTitleLikeOrDescriptionLikeOrCityLike(search.toLowerCase());
+                : propertyRepository.findWithSearch(search.toLowerCase());
 
         return propertyDocuments.stream()
                 .map(propertyMapper::toReadDTO)

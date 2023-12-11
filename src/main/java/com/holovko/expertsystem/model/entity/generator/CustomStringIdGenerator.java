@@ -8,9 +8,11 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class CustomStringIdGenerator implements IdentifierGenerator {
-
     @Override
-    public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
+    public Serializable generate(
+            SharedSessionContractImplementor session,
+            Object object
+    ) throws HibernateException {
         return UUID.randomUUID().toString();
     }
 }

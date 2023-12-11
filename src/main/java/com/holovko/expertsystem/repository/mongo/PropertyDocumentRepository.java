@@ -11,8 +11,10 @@ public interface PropertyDocumentRepository extends MongoRepository<PropertyDocu
 
     List<PropertyDocument> findAllByStatus(PropertyStatus status);
 
-    @Query("{$or : [{'title': { $regex: ?0, $options:'i' }}, {'description': { $regex: ?0, $options:'i' }}, {'city': { $regex: ?0, $options:'i' }}]}")
-    List<PropertyDocument> findByTitleLikeOrDescriptionLikeOrCityLike(String search);
+    @Query("{$or : [{'title': { $regex: ?0, $options:'i' }}, " +
+            "{'description': { $regex: ?0, $options:'i' }}," +
+            " {'city': { $regex: ?0, $options:'i' }}]}")
+    List<PropertyDocument> findWithSearch(String search);
 
     List<PropertyDocument> findAllBySellerId(String sellerId);
 }
